@@ -5,4 +5,5 @@ module Frontco
   require_relative 'frontco/tags'
 
   autoload(:Renders, 'frontco/renders')
+  autoload(:HTML, 'frontco/wrappers/html.rb')
 end

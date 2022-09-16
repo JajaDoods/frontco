@@ -21,7 +21,7 @@ Or install it yourself as:
 ```ruby
     require 'frontco'
 
-    html_form = Frontco::Renders::HTMLRender.new.form(action: '#', method: 'post') do
+    html_form = Frontco::HTML.new.form(action: '#', method: 'post') do
         label('Username') { input(type: 'text', required: true) }
         label('Password') { input(type: 'password', required: true) }
         button('Submit')

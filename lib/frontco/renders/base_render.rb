@@ -51,7 +51,7 @@ module Frontco
       # * +attrs+ attributes that added for the tag
       # * +subtags+ tags that contains +tag+
       def create_paired_tag(tag, text, **attrs, &subtags)
-        raise NotImplemenentedError,
+        raise NotImplementedError,
               "You need implement create_paired_tag(#{tag}, #{text}, **#{attrs}, &#{subtags})"
       end
 
@@ -60,13 +60,13 @@ module Frontco
       # * +tag+ tag name(br, img for example)
       # * +attrs+ attributes that added for the tag
       def create_singleton_tag(tag, **attrs)
-        raise NotImplemenentedError,
+        raise NotImplementedError,
               "You need implement create_singleton_tag(#{tag}, **#{attrs})"
       end
 
       # Create doctype
       def create_doctype
-        raise NotImplemenentedError
+        raise NotImplementedError
       end
 
       # Supportive method

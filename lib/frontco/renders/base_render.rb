@@ -18,16 +18,65 @@ module Frontco
         end
       end
 
+      # Create new base render
+      #
+      # Due the fact that BaseRender is an abstract class then creating a new instance
+      # of this class have no sense.
+      #
+      # This class is used for creating new renders(such as HTMLRender). Only you needed is a
+      # inherit this class and implement these methods:
+      # * create_paired_tag
+      # * create_singleton_tag
+      # * create_doctype
+      #
+      # ==== Attributes
+      #
+      # * +indent:+ - start indent for code
+      # * +indent_step:+ - indent incrementation for subtags
+      # * +pretty:+ - pretty output
+      # * +doctype:+ - include doctype or not
+      def initialize(indent: 0, indent_step: 4, pretty: true, doctype: false)
+        @indent = indent
+        @indent_step = indent_step
+        @pretty = pretty
+        @output = (doctype ? create_doctype : '')
+      end
+
       protected
 
+      # Create paired tag
+      # ==== Attributes
+      # * +tag+ tag name(a, li, div for example)
+      # * +text+ text that passed into the tag
+      # * +attrs+ attributes that added for the tag
+      # * +subtags+ tags that contains +tag+
       def create_paired_tag(tag, text, **attrs, &subtags)
         raise NotImplemenentedError,
               "You need implement create_paired_tag(#{tag}, #{text}, **#{attrs}, &#{subtags})"
       end
 
+      # Create singleton tag
+      # ==== Attributes
+      # * +tag+ tag name(br, img for example)
+      # * +attrs+ attributes that added for the tag
       def create_singleton_tag(tag, **attrs)
         raise NotImplemenentedError,
               "You need implement create_singleton_tag(#{tag}, **#{attrs})"
+      end
+
+      # Create doctype
+      def create_doctype
+        raise NotImplemenentedError
+      end
+
+      # Supportive method
+      #
+      # Add indents for string and newline if +newline: true+
+      # ==== Attributes
+      # * +str+ source string
+      # * +newline:+ add new line or not(default true)
+      def add_indent(str, newline: true)
+        (' ' * @indent) + str + ("\n" if newline)
       end
     end
   end

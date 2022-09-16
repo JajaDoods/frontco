@@ -78,6 +78,21 @@ module Frontco
       def add_indent(str, newline: true)
         (' ' * @indent) + str + ("\n" if newline)
       end
+
+      # Supportive method
+      #
+      # Convert attributes from a hash to a string
+      # and formatting them
+      #
+      # ==== Attributes
+      # * +attrs+ attributes thats will be converted to a string
+      #
+      # ==== Formatting
+      # If value of the attribute is a +true+ value, then
+      # ouput will be a.to_s. Else, output will be "attribute='value'"
+      def format_attrs(**attrs)
+        attrs.map { |a, v| v == true ? a.to_s : "#{a}='#{v}'" }.join ' '
+      end
     end
   end
 end

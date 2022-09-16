@@ -71,7 +71,7 @@ module Frontco
 
       # Supportive method
       #
-      # Add indents for string and newline if newline = true
+      # Add indents for string and newline if +newline: true+
       # ==== Attributes
       # * +str+ source string
       # * +newline:+ add new line or not(default true)

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'frontco/version'
-
 module Frontco
-  class Error < StandardError; end
-  # Your code goes here...
+  require_relative 'frontco/version'
+  require_relative 'frontco/tags'
 end

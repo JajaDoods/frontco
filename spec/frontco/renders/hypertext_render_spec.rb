@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Frontco::Renders::BaseRender do
+RSpec.describe Frontco::Renders::HypertextRender do
   render = described_class.new
 
   it 'Has all paired tags' do

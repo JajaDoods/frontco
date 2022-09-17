@@ -93,13 +93,14 @@ module Frontco
       # and formatting them
       #
       # ==== Attributes
+      # * +attr_join+ join string
       # * +attrs+ attributes thats will be converted to a string
       #
       # ==== Formatting
       # If value of the attribute is a +true+ value, then
       # ouput will be a.to_s. Else, output will be "attribute='value'"
-      def format_attrs(**attrs)
-        attrs.map { |a, v| v == true ? a.to_s : "#{a}='#{v}'" }.join ' '
+      def format_attrs(attr_join = ' ', **attrs)
+        attrs.map { |a, v| v == true ? a.to_s : "#{a}='#{v}'" }.join(attr_join)
       end
     end
   end

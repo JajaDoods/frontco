@@ -4,14 +4,6 @@ module Frontco
   module Renders
     # Render ruby block into HTML source code
     class HTMLRender < HypertextRender
-      # Used for adding the text into subtags
-      #
-      # ==== Attributes
-      # * +text+ text that need add into subtags
-      def rtext(text)
-        @output += format_if_pretty(text.to_s)
-      end
-
       protected
 
       # Creates a paired HTML tag

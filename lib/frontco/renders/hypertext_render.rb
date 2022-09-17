@@ -42,6 +42,14 @@ module Frontco
         @output = (doctype ? create_doctype : '')
       end
 
+      # Used for adding the text into subtags
+      #
+      # ==== Attributes
+      # * +text+ text that need add into subtags
+      def rtext(text)
+        @output += format_if_pretty(text.to_s)
+      end
+
       protected
 
       # Create paired tag

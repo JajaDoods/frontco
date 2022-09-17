@@ -3,7 +3,7 @@
 module Frontco
   module Renders
     # Render ruby block into HTML source code
-    class HTMLRender < BaseRender
+    class HTMLRender < HypertextRender
       # Used for adding the text into subtags
       #
       # ==== Attributes

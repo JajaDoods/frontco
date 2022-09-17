@@ -3,7 +3,7 @@
 module Frontco
   module Renders
     # Base abstract class for HTML, Pug and others render classes
-    class BaseRender
+    class HypertextRender
       # creating paired tags
       Frontco::Tags::PAIRED_TAGS.each do |tag|
         define_method(tag) do |text = '', **attrs, &subtags|

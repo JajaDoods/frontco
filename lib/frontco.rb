@@ -11,4 +11,9 @@ module Frontco
   def self.html(**kwargs)
     Frontco::Renders::HTMLRender.new(**kwargs)
   end
+
+  # Easier access for PugRender class
+  def self.pug(**kwargs)
+    Frontco::Renders::PugRender.new(**kwargs)
+  end
 end

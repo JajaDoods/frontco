@@ -7,7 +7,7 @@ module Frontco
 
   autoload(:Renders, 'frontco/renders')
 
-  # 
+  # Easier access for HTMLRender class
   def self.html(**kwargs)
     Frontco::Renders::HTMLRender.new(**kwargs)
   end

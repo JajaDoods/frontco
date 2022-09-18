@@ -2,51 +2,31 @@
 
 module Frontco
   module Renders
-    # Render ruby block into HTML source code
+    # Strategy for HTML rendering
     class HTMLRender < HypertextRender
-      protected
+      include Frontco::Elements
 
-      # Creates a paired HTML tag
-      # For more details see Frontco::Renders::BaseRender#create_paired_tag
-      def create_paired_tag(tag, text, **attrs, &subtags)
-        attrs_ = attrs.empty? ? '' : " #{format_attrs(**attrs)}"
-        if block_given?
-          @output += format_if_pretty("<#{tag}#{attrs_}>")
+      def add_tag(tag, paired, *text, **attrs, &subtags)
+        tag = HTMLTag.new(tag, paired, *text, **attrs)
 
-          render_subtags(text, &subtags)
-
-          @output += format_if_pretty("</#{tag}>")
-        else
-          @output += format_if_pretty("<#{tag}#{attrs_}>#{text}</#{tag}>")
+        unless paired && block_given?
+          @parent_tag.is_a?(HTMLTag) ? @parent_tag << tag : @tags << tag
+          return
         end
+
+        parent_tag_copy = @parent_tag
+        @parent_tag = tag
+
+        subtags.arity.zero? ? instance_eval(&subtags) : yield(self)
+
+        @parent_tag = parent_tag_copy
+        @parent_tag.is_a?(HTMLTag) ? @parent_tag << tag : @tags << tag
       end
 
-      # Creates a singleton HTML tag
-      # For more details see Frontco::Renders::BaseRender#create_singleton_tag
-      def create_singleton_tag(tag, **attrs)
-        attrs_ = attrs.empty? ? '' : " #{format_attrs(**attrs)}"
-        @output += format_if_pretty("<#{tag}#{attrs_}>")
-      end
-
-      # Creates a HTML doctype
-      # For more details see Frontco::Renders::BaseRender#create_doctype
-      def create_doctype
-        format_if_pretty('<!DOCTYPE html>')
-      end
-
-      # Rendering tags with indentation
-      def render_subtags(text, &tags)
-        @indent += @indent_step
-
-        rtext(text) unless text.empty?
-        tags.arity.zero? ? instance_eval(&tags) : yield(self)
-
-        @indent -= @indent_step
-      end
-
-      # Formatting string if @pretty if true
-      def format_if_pretty(str, newline: true)
-        @pretty ? add_indent(str, newline: newline) : str
+      def render(**params)
+        @tags.map do |tag|
+          tag.render(**params)
+        end.join
       end
     end
   end

@@ -12,3 +12,6 @@ RSpec/MultipleExpectations:
 # Disables "Example has too many lines [#X/5]"
 RSpec/ExampleLength:
   Enabled: false
+
+RSpec/MissingSuper:
+  Enabled: false

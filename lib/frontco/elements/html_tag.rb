@@ -4,9 +4,10 @@ module Frontco
   module Elements
     # Represents HTML tag
     class HTMLTag
-      def initialize(tag, paired, *text, **attrs)
+      def initialize(tag, paired, parent_tag, *text, **attrs)
         @tag = tag
         @paired = paired
+        @parent_tag = parent_tag
         @text = text
         @attrs = attrs
         @subtags = []
@@ -27,6 +28,13 @@ module Frontco
         raise ArgumentError, 'HTML tag contains only HTML tags' unless tag.is_a? HTMLTag
 
         @subtags << tag
+      end
+
+      def >>(other)
+        raise ArgumentError, 'HTML tag contains only HTML tags' unless other.is_a? HTMLTag
+        raise ArgumentError, 'HTML tag already contains in another HTML tag' if @parent_tag.is_a? HTMLTag
+
+        @parent_tag = other
       end
 
       private

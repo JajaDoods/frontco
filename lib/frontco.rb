@@ -11,7 +11,15 @@ module Frontco
   # Context class
   class Render
     def method_missing(method, *args, **params, &block)
-      @render.send(method, *args, **params, &block) 
+      if @render.respond_to? method
+        @render.send(method, *args, **params, &block)
+      else
+        super
+      end
+    end
+
+    def respond_to_missing?(method, include_private = false)
+      @render.respond_to?(method) || super
     end
   end
 
@@ -20,7 +28,7 @@ module Frontco
     include Frontco::Renders
 
     def initialize(&block)
-      @render = HTMLRender.new(&block || Proc.new {})
+      @render = HTMLRender.new(&block || proc {})
     end
   end
 end

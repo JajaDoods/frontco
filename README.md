@@ -47,7 +47,7 @@ Result HTML
           <h2>How i can create a form?</h2>
           <form action='#' method='post'>
             <label>
-              Username
+              Username.
               <input type='text' required>
             </label>
             <label>

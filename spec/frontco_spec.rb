@@ -32,7 +32,7 @@ RSpec.describe Frontco do
       </form>
       <p>Easy! Just use HTML tags and enjoy!</p>
     HTML
-    expect(html.render(step: 2)).to eq(html_)
+    expect(html.render(step: 2).output).to eq(html_)
 
     html.new do
       div(class: 'wrapper') do
@@ -49,7 +49,7 @@ RSpec.describe Frontco do
           </a>
       </div>
     HTML
-    expect(html.render(indent: 6)).to eq(html_)
+    expect(html.render(indent: 6).output).to eq(html_)
 
     html.new do
       input { a }
@@ -57,6 +57,6 @@ RSpec.describe Frontco do
     html_ = <<~HTML
       <input>
     HTML
-    expect(html.render(step: 2)).to eq(html_)
+    expect(html.render(step: 2).output).to eq(html_)
   end
 end

@@ -17,10 +17,10 @@ module Frontco
         @step = step
         attrs = @attrs.empty? ? '' : " #{format_attrs}"
 
-        return wrap_tag("<#{@tag}#{attrs}>") unless @paired
-        return wrap_tag("<#{@tag}#{attrs}>#{@text.join(' ')}</#{@tag}>") if @subtags.empty?
+        return add_indents("<#{@tag}#{attrs}>\n") unless @paired
+        return add_indents("<#{@tag}#{attrs}>#{@text.join(' ')}</#{@tag}>\n") if @subtags.empty?
 
-        wrap_tag("<#{@tag}#{attrs}>") + render_text + render_subtags + wrap_tag("</#{@tag}>")
+        add_indents("<#{@tag}#{attrs}>\n") + render_text + render_subtags + add_indents("</#{@tag}>\n")
       end
 
       def <<(tag)
@@ -41,7 +41,7 @@ module Frontco
         return '' if @text.empty?
 
         @indent += @step
-        output = @text.map { |t| wrap_tag(t) }.join
+        output = @text.map { |txt| add_indents("#{txt}\n") }.join
         @indent -= @step
         output
       end
@@ -52,8 +52,8 @@ module Frontco
         end.join ' '
       end
 
-      def wrap_tag(str, newline: true)
-        (' ' * @indent) + str + ("\n" if newline)
+      def add_indents(str)
+        (' ' * @indent) + str
       end
     end
   end

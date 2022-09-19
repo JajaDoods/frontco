@@ -30,22 +30,31 @@ Or install it yourself as:
       end
       p('Easy!', 'Just use HTML tags and enjoy!')
     end
-    html.render(indent: 2, step: 2)
+
+    # print ouput html to the console  
+    puts html.render(indent: 10, step: 2).output
+    
+    # or you can save html into a file
+    html.save_to_file('file-path.html')
+
+    # or
+    html.render
+    puts html.output # print to console
+    html.save_to_file('file-path.html') # and save into a file
 ```
 Result HTML
 ```html
-      <h2>How i can create a form?</h2>
-      <form action='#' method='post'>
-        <label>
-          Username.
-          <input type='text' required>
-        </label>
-        <label>
-          Password.
-          Please, enter the valid data!!
-          <input type='password' required>
-        </label>
-        <button>Submit!</button>
-      </form>
-      <p>Easy! Just use HTML tags and enjoy!</p>
+          <h2>How i can create a form?</h2>
+          <form action='#' method='post'>
+            <label>
+              Username
+              <input type='text' required>
+            </label>
+            <label>
+              Password.
+              Please, enter the valid data!!
+              <input type='password' required>
+            </label>
+            <button>Submit</button>
+          </form>
 ```

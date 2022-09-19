@@ -30,11 +30,11 @@ module Frontco
         @subtags << tag
       end
 
-      def >>(tag)
-        raise ArgumentError, 'HTML tag contains only HTML tags' unless tag.is_a? HTMLTag
+      def >>(other)
+        raise ArgumentError, 'HTML tag contains only HTML tags' unless other.is_a? HTMLTag
         raise ArgumentError, 'HTML tag already contains in another HTML tag' if @parent_tag.is_a? HTMLTag
 
-        @parent_tag = tag
+        @parent_tag = other
       end
 
       private

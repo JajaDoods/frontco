@@ -48,7 +48,7 @@ module Frontco
         self
       end
 
-      def save_to_file(file_path, mode = 'a')
+      def save_to_file(file_path, mode: 'a')
         File.write(file_path, @output, mode: mode)
       end
     end

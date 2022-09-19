@@ -10,20 +10,8 @@ module Frontco
 
   # Context class
   class Render
-    def render(**params)
-      @render.render(**params)
-    end
-
-    def new(&block)
-      @render.new(&block)
-    end
-
-    def to_file(file_path)
-      @render.to_file(file_path)
-    end
-
-    def from_file(file_path)
-      @render.from_file(file_path)
+    def method_missing(method, *args, **params, &block)
+      @render.send(method, *args, **params, &block) 
     end
   end
 
@@ -32,7 +20,7 @@ module Frontco
     include Frontco::Renders
 
     def initialize(&block)
-      @render = HTMLRender.new(&block)
+      @render = HTMLRender.new(&block || Proc.new {})
     end
   end
 end

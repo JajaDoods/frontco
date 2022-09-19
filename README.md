@@ -56,5 +56,6 @@ Result HTML
               <input type='password' required>
             </label>
             <button>Submit</button>
+            <p>Easy! Just use HTML tags and enjoy!</p>
           </form>
 ```

@@ -6,6 +6,24 @@ module Frontco
     class HTMLRender < HypertextRender
       include Frontco::Elements
 
+      attr_reader :output
+
+      def initialize(&block)
+        @tags = []
+        @parent_tag = nil
+        @output = ''
+        new(&block)
+      end
+
+      def new(&block)
+        @tags.clear
+        @output = ''
+
+        @block = block
+        @block.arity.zero? ? instance_eval(&block) : yield(self)
+        self
+      end
+
       def add_tag(tag, paired, *text, **attrs, &subtags)
         tag = HTMLTag.new(tag, paired, *text, **attrs)
 
@@ -24,9 +42,14 @@ module Frontco
       end
 
       def render(**params)
-        @tags.map do |tag|
+        @output = @tags.map do |tag|
           tag.render(**params)
         end.join
+        self
+      end
+
+      def save_to_file(file_path, mode = 'a')
+        File.write(file_path, @output, mode: mode)
       end
     end
   end

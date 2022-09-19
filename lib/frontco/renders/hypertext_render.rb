@@ -18,19 +18,6 @@ module Frontco
         end
       end
 
-      def initialize(&block)
-        @tags = []
-        @parent_tag = nil
-        new(&block)
-      end
-
-      def new(&block)
-        @tags.clear
-        @block = block
-        @block.arity.zero? ? instance_eval(&block) : yield(self)
-        self
-      end
-
       def add_tag(tag, paired, *text, **attrs, &subtags)
         raise NotImplementedError
       end
@@ -40,10 +27,6 @@ module Frontco
       end
 
       def to_file
-        raise NotImplementedError
-      end
-
-      def from_file
         raise NotImplementedError
       end
     end

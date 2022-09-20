@@ -30,7 +30,10 @@ RSpec.describe Frontco do
         </label>
         <button>Submit!</button>
       </form>
-      <p>Easy! Just use HTML tags and enjoy!</p>
+      <p>
+        Easy!
+        Just use HTML tags and enjoy!
+      </p>
     HTML
     expect(html.render(step: 2).output).to eq(html_)
 

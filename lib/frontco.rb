@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'frontco/version'
-
 # Main module
 module Frontco
+  autoload(:VERSION, 'frontco/version.rb')
   autoload(:Atoms, 'frontco/atoms/atoms.rb')
   autoload(:Renders, 'frontco/renders/renders.rb')
   autoload(:Elements, 'frontco/elements/elements.rb')

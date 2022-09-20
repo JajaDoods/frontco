@@ -6,15 +6,9 @@ module Frontco
     class HypertextRender
       include Frontco::Atoms::HypertextAtoms
 
-      PAIRED_TAGS.each do |tag|
+      (PAIRED_TAGS + SINGLETON_TAGS).each do |tag|
         define_method(tag) do |*text, **attrs, &subtags|
-          add_tag(tag, true, *text, **attrs, &subtags)
-        end
-      end
-
-      SINGLETON_TAGS.each do |tag|
-        define_method(tag) do |**attrs|
-          add_tag(tag, false, **attrs)
+          add_tag(tag, *text, **attrs, &subtags)
         end
       end
 
@@ -26,7 +20,7 @@ module Frontco
         raise NotImplementedError
       end
 
-      def save_to_file
+      def to_file
         raise NotImplementedError
       end
     end

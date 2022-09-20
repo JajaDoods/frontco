@@ -47,7 +47,7 @@ Result HTML
           <h2>How i can create a form?</h2>
           <form action='#' method='post'>
             <label>
-              Username
+              Username.
               <input type='text' required>
             </label>
             <label>
@@ -55,6 +55,7 @@ Result HTML
               Please, enter the valid data!!
               <input type='password' required>
             </label>
-            <button>Submit</button>
+            <button>Submit!</button>
+            <p>Easy! Just use HTML tags and enjoy!</p>
           </form>
 ```

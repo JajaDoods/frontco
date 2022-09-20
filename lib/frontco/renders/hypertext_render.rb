@@ -26,7 +26,7 @@ module Frontco
         raise NotImplementedError
       end
 
-      def to_file
+      def save_to_file
         raise NotImplementedError
       end
     end

@@ -2,6 +2,6 @@
 
 module Frontco
   module Elements
-    autoload(:HTMLTag, 'frontco/elements/html_tag.rb')
+    autoload(:HTML, 'frontco/elements/html/html.rb')
   end
 end

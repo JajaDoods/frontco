@@ -35,12 +35,12 @@ Or install it yourself as:
     puts html.render(indent: 10, step: 2).output
     
     # or you can save html into a file
-    html.save_to_file('file-path.html')
+    html.to_file('file-path.html')
 
     # or
     html.render
     puts html.output # print to console
-    html.save_to_file('file-path.html') # and save into a file
+    html.to_file('file-path.html') # and save into a file
 ```
 Result HTML
 ```html
@@ -56,6 +56,9 @@ Result HTML
               <input type='password' required>
             </label>
             <button>Submit!</button>
-            <p>Easy! Just use HTML tags and enjoy!</p>
+            <p>
+              Easy!
+              Just use HTML tags and enjoy!
+            </p>
           </form>
 ```

@@ -5,7 +5,7 @@ module Frontco
     module HTML
       # Class that represents paired HTML tag
       class HTMLPairedElement < HTMLElement
-        def initialize(tag, *text, **attrs)
+        def initialize(tag, *text, **attrs, &_subelements)
           @tag = tag
           @text = text
           @attrs = attrs

@@ -5,7 +5,7 @@ module Frontco
     module HTML
       # Class that represents singleton HTML tag
       class HTMLSingletonElement < HTMLElement
-        def initialize(tag, **attrs)
+        def initialize(tag, *_text, **attrs)
           @tag = tag
           @attrs = attrs
         end

@@ -16,13 +16,13 @@ module Frontco
         end
       end
 
-      def self.create_element(tag, *text, **attrs)
+      def self.create_element(tag, *text, **attrs, &subelements)
         include Frontco::Atoms::HypertextAtoms
 
         case tag
-        when :doctype then HTMLDoctypeElement.new
-        when *PAIRED_TAGS then HTMLPairedElement.new(tag, *text, **attrs)
-        when *SINGLETON_TAGS then HTMLSingletonElement.new(tag, **attrs)
+        when :doctype then HTMLDoctypeElement.new(tag, *text, **attrs, &subelements)
+        when *PAIRED_TAGS then HTMLPairedElement.new(tag, *text, **attrs, &subelements)
+        when *SINGLETON_TAGS then HTMLSingletonElement.new(tag, *text, **attrs, &subelements)
         else
           raise UnknownHTMLTag, tag
         end

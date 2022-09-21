@@ -29,7 +29,7 @@ module Frontco
         if tag.is_a?(Frontco::Elements::HTML::HTMLPairedElement) && block_given?
           parent_tag_copy = @parent_tag
           @parent_tag = tag
-          subtags.arity.zero? ? instance_eval(&subtags) : yield(self)
+          subelements.arity.zero? ? instance_eval(&subelements) : yield(self)
           @parent_tag = parent_tag_copy
         end
 

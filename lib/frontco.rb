@@ -30,4 +30,13 @@ module Frontco
       @render = HTMLRender.new(&block || proc {})
     end
   end
+
+  # Context for PugRender
+  class Pug < Render
+    include Frontco::Renders
+
+    def initialize(&block)
+      @render = PugRender.new(&block || proc {})
+    end
+  end
 end

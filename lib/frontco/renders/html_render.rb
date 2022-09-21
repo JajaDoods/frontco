@@ -23,8 +23,8 @@ module Frontco
         self
       end
 
-      def add_tag(tag, *text, **attrs, &subtags)
-        tag = Frontco::Elements::HTML.create_element(tag, *text, **attrs)
+      def add_tag(tag, *text, **attrs, &subelements)
+        tag = Frontco::Elements::HTML.create_element(tag, *text, **attrs, &subelements)
 
         if tag.is_a?(Frontco::Elements::HTML::HTMLPairedElement) && block_given?
           parent_tag_copy = @parent_tag

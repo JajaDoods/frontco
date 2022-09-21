@@ -31,6 +31,8 @@ module Frontco
         area base br col command embed hr img input keygen
         link meta param source track wbr
       ].freeze
+
+      SPECIAL_TAGS = %i[doctype].freeze
     end
   end
 end

@@ -4,15 +4,15 @@ module Frontco
   module Renders
     # Base abstract class for hypertext renders
     class HypertextRender
-      include Frontco::Atoms::HypertextAtoms
+      include Frontco::Atoms
 
-      (PAIRED_TAGS + SINGLETON_TAGS).each do |tag|
+      HYPERTEXT_ATOMS.each do |tag|
         define_method(tag) do |*text, **attrs, &subtags|
           add_tag(tag, *text, **attrs, &subtags)
         end
       end
 
-      def add_tag(tag, paired, *text, **attrs, &subtags)
+      def add_tag(tag, *text, **attrs, &subtags)
         raise NotImplementedError
       end
 

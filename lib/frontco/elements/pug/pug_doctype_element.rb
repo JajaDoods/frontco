@@ -2,12 +2,12 @@
 
 module Frontco
   module Elements
-    module HTML
-      # Class that represents the doctype HTML tag
-      class HTMLDoctypeElement < HTMLElement
+    module Pug
+      # Class that represents the doctype Pug tag
+      class PugDoctypeElement < PugElement
         def render(**params)
           @indent = params.fetch(:indent, 0)
-          add_indents("<!DOCTYPE html>\n")
+          add_indents("doctype html\n")
         end
       end
     end

@@ -5,6 +5,8 @@ module Frontco
     module HTML
       # Basic abstract class for HTML tags
       class HTMLElement
+        def initialize(tag, *text, **attrs, &subelements); end
+
         def render(**params)
           raise NotImplementedError
         end

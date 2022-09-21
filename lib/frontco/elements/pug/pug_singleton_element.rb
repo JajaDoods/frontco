@@ -2,9 +2,9 @@
 
 module Frontco
   module Elements
-    module HTML
-      # Class that represents singleton HTML tag
-      class HTMLSingletonElement < HTMLElement
+    module Pug
+      # Class that represents singleton Pug tag
+      class PugSingletonElement < PugElement
         def initialize(tag, *_text, **attrs, &_subelements)
           @tag = tag
           @attrs = attrs
@@ -12,9 +12,7 @@ module Frontco
 
         def render(**params)
           @indent = params.fetch(:indent, 0)
-
-          formatted_attrs = @attrs.empty? ? '' : " #{format_attrs}"
-          add_indents("<#{@tag}#{formatted_attrs}>\n")
+          add_indents("#{@tag}#{format_attrs}\n")
         end
       end
     end

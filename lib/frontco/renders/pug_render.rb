@@ -2,8 +2,8 @@
 
 module Frontco
   module Renders
-    # Strategy for HTML rendering
-    class HTMLRender < HypertextRender
+    # Strategy for Pug rendering
+    class PugRender < HypertextRender
       attr_reader :output
 
       def initialize(&block)
@@ -24,9 +24,9 @@ module Frontco
       end
 
       def add_tag(tag, *text, **attrs, &subelements)
-        tag = Frontco::Elements::HTML.create_element(tag, *text, **attrs, &subelements)
+        tag = Frontco::Elements::Pug.create_element(tag, *text, **attrs, &subelements)
 
-        if tag.is_a?(Frontco::Elements::HTML::HTMLPairedElement) && block_given?
+        if tag.is_a?(Frontco::Elements::Pug::PugPairedElement) && block_given?
           parent_tag_copy = @parent_tag
           @parent_tag = tag
           subelements.arity.zero? ? instance_eval(&subelements) : yield(self)

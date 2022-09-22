@@ -34,6 +34,7 @@ module Frontco
         end
 
         @parent_tag.nil? ? @tags << tag : @parent_tag << tag
+        tag
       end
 
       def render(**params)

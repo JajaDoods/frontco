@@ -11,6 +11,16 @@ module Frontco
           raise NotImplementedError
         end
 
+        def c(class_name)
+          @attrs[:class] = class_name
+          self
+        end
+
+        def i(index_name)
+          @attrs[:id] = index_name
+          self
+        end
+
         protected
 
         def add_indents(str)

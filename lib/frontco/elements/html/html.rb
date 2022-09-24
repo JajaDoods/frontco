@@ -29,7 +29,8 @@ module Frontco
         include Frontco::Atoms::HypertextAtoms
 
         case tag
-        when *@element_class.keys then Frontco::Elements::HTML.const_get(@element_class[tag]).new(tag, *text, **attrs, &subelements)
+        when *@element_class.keys then Frontco::Elements::HTML.const_get(@element_class[tag]).new(tag, *text, **attrs,
+                                                                                                  &subelements)
         when *PAIRED_TAGS then HTMLPairedElement.new(tag, *text, **attrs, &subelements)
         when *SINGLETON_TAGS then HTMLSingletonElement.new(tag, *text, **attrs, &subelements)
         else
